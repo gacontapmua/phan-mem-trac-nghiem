@@ -1,0 +1,5 @@
+F:\2014\12. Private Project\dethitracnghiem\thitracnghiem\bin\thitracnghiem.dll
+F:\2014\12. Private Project\dethitracnghiem\thitracnghiem\bin\thitracnghiem.pdb
+F:\2014\12. Private Project\dethitracnghiem\thitracnghiem\obj\Debug\thitracnghiem.dll
+F:\2014\12. Private Project\dethitracnghiem\thitracnghiem\obj\Debug\thitracnghiem.pdb
+F:\2014\12. Private Project\dethitracnghiem\thitracnghiem\obj\Debug\thitracnghiem.dll.licenses

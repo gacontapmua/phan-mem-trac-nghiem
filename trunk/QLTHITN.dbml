@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QL_Thitracnghiem" Class="QLTHITNDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=WIN-0UJ5BAEK0M9;Initial Catalog=QL_Thitracnghiem;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QL_ThitracnghiemConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BODETHI" Member="BODETHIs">
+    <Type Name="BODETHI">
+      <Column Name="MABODT" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NGAYTAO" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SOCAUHOI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="BODETHI_CHITIETBODETHI" Member="CHITIETBODETHIs" ThisKey="MABODT" OtherKey="MABODT" Type="CHITIETBODETHI" />
+      <Association Name="DETHI_BODETHI" Member="DETHI" ThisKey="MABODT" OtherKey="MADETHI" Type="DETHI" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SINHVIEN" Member="SINHVIENs">
+    <Type Name="SINHVIEN">
+      <Column Name="MATS" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HOTEN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CAPBAC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CHUCVU" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DONVI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TENDN" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="MATKHAU" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SODETHI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TENBAITH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="CAPBAC_SINHVIEN" Member="CAPBAC1" ThisKey="CAPBAC" OtherKey="MACAPBAC" Type="CAPBAC" IsForeignKey="true" />
+      <Association Name="CHUCVU_SINHVIEN" Member="CHUCVU1" ThisKey="CHUCVU" OtherKey="MACHUCVU" Type="CHUCVU" IsForeignKey="true" />
+      <Association Name="DETHI_SINHVIEN" Member="DETHI" ThisKey="SODETHI" OtherKey="MADETHI" Type="DETHI" IsForeignKey="true" />
+      <Association Name="DONVI_SINHVIEN" Member="DONVI1" ThisKey="DONVI" OtherKey="MADONVI" Type="DONVI" IsForeignKey="true" />
+      <Association Name="NHOMVK_SINHVIEN" Member="NHOMVK" ThisKey="TENBAITH" OtherKey="MANHOM" Type="NHOMVK" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CAPBAC" Member="CAPBACs">
+    <Type Name="CAPBAC">
+      <Column Name="MACAPBAC" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENCAPBAC" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="CAPBAC_SINHVIEN" Member="SINHVIENs" ThisKey="MACAPBAC" OtherKey="CAPBAC" Type="SINHVIEN" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CAUHOI" Member="CAUHOIs">
+    <Type Name="CAUHOI">
+      <Column Name="MACH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NOIDUNG" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="HINHANH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MANHOM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="CAUHOI_CHITIETBODETHI" Member="CHITIETBODETHIs" ThisKey="MACH" OtherKey="MACH" Type="CHITIETBODETHI" />
+      <Association Name="CAUHOI_DAPAN" Member="DAPANs" ThisKey="MACH" OtherKey="MACH" Type="DAPAN" />
+      <Association Name="NHOMVK_CAUHOI" Member="NHOMVK" ThisKey="MANHOM" OtherKey="MANHOM" Type="NHOMVK" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CHITIETBODETHI" Member="CHITIETBODETHIs">
+    <Type Name="CHITIETBODETHI">
+      <Column Name="MABODT" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MACH" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="BODETHI_CHITIETBODETHI" Member="BODETHI" ThisKey="MABODT" OtherKey="MABODT" Type="BODETHI" IsForeignKey="true" />
+      <Association Name="CAUHOI_CHITIETBODETHI" Member="CAUHOI" ThisKey="MACH" OtherKey="MACH" Type="CAUHOI" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CHUCVU" Member="CHUCVUs">
+    <Type Name="CHUCVU">
+      <Column Name="MACHUCVU" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENCHUCVU" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="CHUCVU_SINHVIEN" Member="SINHVIENs" ThisKey="MACHUCVU" OtherKey="CHUCVU" Type="SINHVIEN" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DAPAN" Member="DAPANs">
+    <Type Name="DAPAN">
+      <Column Name="MADA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MACH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NOIDUNGDA" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="DADUNG" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="CAUHOI_DAPAN" Member="CAUHOI" ThisKey="MACH" OtherKey="MACH" Type="CAUHOI" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DETHI" Member="DETHIs">
+    <Type Name="DETHI">
+      <Column Name="MADETHI" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CAUHOI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MABODT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NGAYTAO" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="SODETHI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="DETHI_BODETHI" Member="BODETHI" ThisKey="MADETHI" OtherKey="MABODT" Type="BODETHI" Cardinality="One" />
+      <Association Name="DETHI_SINHVIEN" Member="SINHVIENs" ThisKey="MADETHI" OtherKey="SODETHI" Type="SINHVIEN" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DONVI" Member="DONVIs">
+    <Type Name="DONVI">
+      <Column Name="MADONVI" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENDONVI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="DONVI_SINHVIEN" Member="SINHVIENs" ThisKey="MADONVI" OtherKey="DONVI" Type="SINHVIEN" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KETQUA" Member="KETQUAs">
+    <Type Name="KETQUA">
+      <Column Name="MATS" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NGAYTHI" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SOCAUDUNG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SOCAUSAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DIEM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KYTHI" Member="KYTHIs">
+    <Type Name="KYTHI">
+      <Column Name="MAKYTHI" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENKYTHI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NGAYTHI" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="MABODT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SODETHI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LOADKQCU" Member="LOADKQCUs">
+    <Type Name="LOADKQCU">
+      <Column Name="TENTS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TRINHDO" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SOCH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="THOIGIAN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SOCAUDUNG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SOCAUSAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NGAYTHI" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NHOMVK" Member="NHOMVKs">
+    <Type Name="NHOMVK">
+      <Column Name="MANHOM" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENNHOM" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="NHOMVK_SINHVIEN" Member="SINHVIENs" ThisKey="MANHOM" OtherKey="TENBAITH" Type="SINHVIEN" />
+      <Association Name="NHOMVK_CAUHOI" Member="CAUHOIs" ThisKey="MANHOM" OtherKey="MANHOM" Type="CAUHOI" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BODETHI_CAUHOI" Member="BODETHI_CAUHOIs">
+    <Type Name="BODETHI_CAUHOI">
+      <Column Name="MABODT" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MACH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NOIDUNG" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="HINHANH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MANHOM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>
