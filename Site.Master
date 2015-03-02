@@ -32,8 +32,14 @@
                 <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
                     <Items>
                         <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Trang chủ"/>
-                        <asp:MenuItem NavigateUrl="~/NhapCauHoi.aspx" Text="Quản lý câu hỏi" 
-                            Value="Quản lý câu hỏi"></asp:MenuItem>
+                        <asp:MenuItem Text="Quản lý đề thi">
+                            <asp:MenuItem NavigateUrl="~/NhapCauHoi.aspx" Text="Nhập câu hỏi" 
+                                Value="Nhập câu hỏi"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/BoDeThi.aspx" Text="Lập bộ đề thi" 
+                                Value="Lập bộ đề thi"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/LapKyThi.aspx" Text="Lập kỳ thi" 
+                                Value="Lập kỳ thi"></asp:MenuItem>
+                        </asp:MenuItem>
                         <asp:MenuItem Text="Thi trắc nghiệm" Value="Thi trắc nghiệm"></asp:MenuItem>
                         <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
                     </Items>
