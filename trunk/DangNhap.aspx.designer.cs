@@ -10,105 +10,78 @@
 namespace thitracnghiem {
     
     
-    public partial class LapKyThi {
+    public partial class DangNhap {
         
         /// <summary>
-        /// ASPxFormLayout1 control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxFormLayout.ASPxFormLayout ASPxFormLayout1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// txtTenKT control.
+        /// Panel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtTenKT;
+        protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// dateNgayThi control.
+        /// Panel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxDateEdit dateNgayThi;
+        protected global::System.Web.UI.WebControls.Panel Panel2;
         
         /// <summary>
-        /// cbBoDT control.
+        /// txtTenDN control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxComboBox cbBoDT;
+        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtTenDN;
         
         /// <summary>
-        /// txtSoDT control.
+        /// txtMatKhau control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtSoDT;
+        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtMatKhau;
         
         /// <summary>
-        /// btnNew control.
+        /// btnDangNhap control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxButton btnNew;
+        protected global::DevExpress.Web.ASPxEditors.ASPxButton btnDangNhap;
         
         /// <summary>
-        /// btnSave control.
+        /// btnThoat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxButton btnSave;
+        protected global::DevExpress.Web.ASPxEditors.ASPxButton btnThoat;
         
         /// <summary>
-        /// txtError control.
+        /// lblError control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtError;
-        
-        /// <summary>
-        /// ASPxGridView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::DevExpress.Web.ASPxGridView.ASPxGridView ASPxGridView1;
-        
-        /// <summary>
-        /// KyThiSource control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource KyThiSource;
-        
-        /// <summary>
-        /// BoDeThiSource control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinqDataSource BoDeThiSource;
+        protected global::DevExpress.Web.ASPxEditors.ASPxLabel lblError;
     }
 }

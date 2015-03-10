@@ -67,6 +67,19 @@ namespace thitracnghiem.BUS
          
           
         }
+        public ArrayList GetCauHois(int mabdt)
+        {
+        var q = from a in db.CHITIETBODETHIs
+                where a.MABODT == mabdt
+                select a.MACH ;
+        ArrayList dsch = new ArrayList();
+        foreach (int item in q)
+        {
+            dsch.Add(item);
+        }
+
+        return dsch;
+        }
 
     }
 }

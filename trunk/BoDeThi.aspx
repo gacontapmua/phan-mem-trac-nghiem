@@ -3,6 +3,10 @@
 <%@ Register Assembly="DevExpress.Web.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a"
     Namespace="DevExpress.Web.ASPxGridView" TagPrefix="dx" %>
 <%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxEditors" tagprefix="dx" %>
+<script runat="server">
+
+   
+</script>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <style type="text/css">
         .style1
@@ -46,7 +50,8 @@
         <tr>
             <td colspan="3" class="style2">
                 <dx:ASPxDateEdit ID="dateBDT" runat="server" AutoPostBack="True" 
-                    Caption="Ngày tạo Bộ đề thi">
+                    Caption="Ngày tạo Bộ đề thi" Date="02/26/2015 09:07:18" 
+                    ClientInstanceName="dateBDT">
                 </dx:ASPxDateEdit>
             </td>
         </tr>
@@ -163,16 +168,13 @@
                 </dx:ASPxButton>
             </td>
             <td class="style4">
-                <dx:ASPxButton ID="btnCreate" runat="server" Text="Tạo bộ đề thi" Theme="Aqua" 
-                    onclick="btnCreate_Click">
+                <dx:ASPxButton ID="btnCreateQuestion" runat="server" Text="Tạo bộ câu hỏi" 
+                    Theme="Aqua" onclick="btnCreateQuestion_Click">
                 </dx:ASPxButton>
             </td>
             
             <td>
-                <dx:ASPxButton ID="btnCreateDefault" runat="server" style="margin-left: 3px" 
-                    Text="Tạo bộ đề thi mặc định" Theme="Aqua">
-                </dx:ASPxButton>
-            </td>
+                &nbsp;</td>
             
         </tr>
     </table>
