@@ -5,6 +5,16 @@
 <%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxGridView" tagprefix="dx" %>
 <%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxEditors" tagprefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <script type="text/javascript">
+    function OnNameValidation(s, e) {
+        var name = e.value;
+        if (name == null)
+            return;
+        if (name.length <= 0)
+            e.isValid = false;
+    }
+</script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <dx:ASPxFormLayout ID="ASPxFormLayout1" runat="server" 
@@ -16,7 +26,13 @@
                         <LayoutItemNestedControlCollection>
                             <dx:LayoutItemNestedControlContainer runat="server">
                                 <dx:ASPxTextBox ID="txtTenKT" runat="server" ClientInstanceName="txtTenKT" 
-                                    Width="170px">
+                                    OnValidation="txtTenKT_Validation" Width="170px">
+                                    <ClientSideEvents Validation="OnNameValidation" />
+                                    <ValidationSettings ErrorText="Phải đặt tên kỳ thi" SetFocusOnError="True">
+                                        <RequiredField ErrorText="Yêu cầu đặt tên" IsRequired="True" />
+                                    </ValidationSettings>
+                                    <InvalidStyle BackColor="LightPink">
+                                    </InvalidStyle>
                                 </dx:ASPxTextBox>
                             </dx:LayoutItemNestedControlContainer>
                         </LayoutItemNestedControlCollection>
@@ -33,9 +49,13 @@
                     <dx:LayoutItem Caption="Mã bộ đề thi" FieldName="MABODT">
                         <LayoutItemNestedControlCollection>
                             <dx:LayoutItemNestedControlContainer runat="server">
-                                <dx:ASPxSpinEdit ID="cbBoDT" runat="server" ClientInstanceName="cbBoDT" 
-                                    Number="0">
-                                </dx:ASPxSpinEdit>
+                                <dx:ASPxComboBox ID="cbBoDT" runat="server" ClientInstanceName="cbBoDT" 
+                                    DataSourceID="BoDeThiSource" ValueField="MABODT">
+                                    <Columns>
+                                        <dx:ListBoxColumn Caption="Mã bộ đề thi" FieldName="MABODT" />
+                                        <dx:ListBoxColumn Caption="Ngày lập" FieldName="NGAYTAO" />
+                                    </Columns>
+                                </dx:ASPxComboBox>
                             </dx:LayoutItemNestedControlContainer>
                         </LayoutItemNestedControlCollection>
                     </dx:LayoutItem>
@@ -65,8 +85,17 @@
                         <LayoutItemNestedControlCollection>
                             <dx:LayoutItemNestedControlContainer runat="server">
                                 <dx:ASPxButton ID="btnSave" runat="server" ClientInstanceName="btnSave" 
-                                    Text="Lưu thông tin">
+                                    OnClick="btnSave_Click" Text="Lưu thông tin">
                                 </dx:ASPxButton>
+                            </dx:LayoutItemNestedControlContainer>
+                        </LayoutItemNestedControlCollection>
+                    </dx:LayoutItem>
+                    <dx:LayoutItem Caption="" ColSpan="2">
+                        <LayoutItemNestedControlCollection>
+                            <dx:LayoutItemNestedControlContainer runat="server">
+                                <dx:ASPxTextBox ID="txtError" runat="server" ClientInstanceName="txtError" 
+                                    ForeColor="Red" Width="170px">
+                                </dx:ASPxTextBox>
                             </dx:LayoutItemNestedControlContainer>
                         </LayoutItemNestedControlCollection>
                     </dx:LayoutItem>
@@ -75,7 +104,7 @@
         </Items>
     </dx:ASPxFormLayout>
     <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" 
-        Caption="Lập kỳ thi" DataSourceID="KyThiSource" EnableTheming="True" 
+        Caption="Danh sách kỳ thi" DataSourceID="KyThiSource" EnableTheming="True" 
         KeyFieldName="MAKYTHI" Theme="Aqua">
         <Columns>
             <dx:GridViewDataTextColumn FieldName="MAKYTHI" 

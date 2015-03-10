@@ -34,8 +34,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v14.1.Core, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v14.1.Core, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v14.1.Core, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Spreadsheet.v14.1.Core, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.ASPxSpreadsheet.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="DevExpress.Web.ASPxThemes.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -65,12 +70,15 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="BoDeThi.aspx" />
+    <Content Include="DangNhap.aspx" />
     <Content Include="DMCapBac.aspx" />
     <Content Include="DMChucVu.aspx" />
     <Content Include="HocVien.aspx" />
     <Content Include="image\ga-mai-3.jpg" />
     <Content Include="image\ga-me-4.jpg" />
     <Content Include="image\Picture2015-02-02 11-36-25.jpg" />
+    <Content Include="LapDSThiSinh.aspx" />
+    <Content Include="LapKyThi.aspx" />
     <Content Include="NhapCauHoi.aspx" />
     <Content Include="Styles\DragAndDrop.css" />
     <Content Include="Styles\Site.css" />
@@ -80,6 +88,7 @@
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
     <Content Include="TestNCH.aspx" />
+    <Content Include="ThiOnline.aspx" />
     <Content Include="ThiTracNghiem.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -132,6 +141,20 @@
     <Compile Include="BoDeThi.aspx.designer.cs">
       <DependentUpon>BoDeThi.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BUS\BoDeThiBUS.cs" />
+    <Compile Include="BUS\CauHoiBUS.cs" />
+    <Compile Include="BUS\DapAnBUS.cs" />
+    <Compile Include="BUS\DeThiBUS.cs" />
+    <Compile Include="BUS\KyThiBUS.cs" />
+    <Compile Include="BUS\NhomVKBUS.cs" />
+    <Compile Include="BUS\SinhVienBUS.cs" />
+    <Compile Include="DangNhap.aspx.cs">
+      <DependentUpon>DangNhap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DangNhap.aspx.designer.cs">
+      <DependentUpon>DangNhap.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -163,6 +186,20 @@
     <Compile Include="HocVien.aspx.designer.cs">
       <DependentUpon>HocVien.aspx</DependentUpon>
     </Compile>
+    <Compile Include="LapDSThiSinh.aspx.cs">
+      <DependentUpon>LapDSThiSinh.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LapDSThiSinh.aspx.designer.cs">
+      <DependentUpon>LapDSThiSinh.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LapKyThi.aspx.cs">
+      <DependentUpon>LapKyThi.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LapKyThi.aspx.designer.cs">
+      <DependentUpon>LapKyThi.aspx</DependentUpon>
+    </Compile>
     <Compile Include="NhapCauHoi.aspx.cs">
       <DependentUpon>NhapCauHoi.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -189,6 +226,13 @@
     </Compile>
     <Compile Include="TestNCH.aspx.designer.cs">
       <DependentUpon>TestNCH.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ThiOnline.aspx.cs">
+      <DependentUpon>ThiOnline.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ThiOnline.aspx.designer.cs">
+      <DependentUpon>ThiOnline.aspx</DependentUpon>
     </Compile>
     <Compile Include="ThiTracNghiem.aspx.cs">
       <DependentUpon>ThiTracNghiem.aspx</DependentUpon>
@@ -231,7 +275,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>2595</DevelopmentServerPort>
+          <DevelopmentServerPort>46250</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

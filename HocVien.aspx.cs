@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using DevExpress.Web.ASPxGridView;
 
 namespace thitracnghiem
 {
@@ -11,7 +12,8 @@ namespace thitracnghiem
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+              Grid.SettingsEditing.BatchEditSettings.EditMode = (GridViewBatchEditMode)Enum.Parse(typeof(GridViewBatchEditMode), EditModeCombo.Text, true);
+        Grid.SettingsEditing.BatchEditSettings.StartEditAction = (GridViewBatchStartEditAction)Enum.Parse(typeof(GridViewBatchStartEditAction), StartEditActionCombo.Text, true);
         }
     }
 }
