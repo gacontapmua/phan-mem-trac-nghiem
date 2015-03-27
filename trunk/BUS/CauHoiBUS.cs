@@ -23,7 +23,7 @@ namespace thitracnghiem.BUS
             return dsch;
         }
         //Load danh sách câu hỏi theo bộ đề thi
-        public ArrayList GetGSCauHoiDT(int madt)
+        public ArrayList GetDSCauHoiDT(int madt)
         {
         //Có mã đề thi sẽ lấy được danh sách câu hỏi
             var query = from a in db.CHITIETDETHIs

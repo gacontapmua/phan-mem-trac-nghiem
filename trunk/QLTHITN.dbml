@@ -6,6 +6,25 @@
       <Column Name="NGAYTAO" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="SOCAUHOI" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="BODETHI_CHITIETBODETHI" Member="CHITIETBODETHIs" ThisKey="MABODT" OtherKey="MABODT" Type="CHITIETBODETHI" />
+      <Association Name="BODETHI_KYTHI" Member="KYTHIs" ThisKey="MABODT" OtherKey="MABODT" Type="KYTHI" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SINHVIEN" Member="SINHVIENs">
+    <Type Name="SINHVIEN">
+      <Column Name="MATS" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HOTEN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CAPBAC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CHUCVU" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DONVI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TENDN" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="MATKHAU" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="SODETHI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TENBAITH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="CAPBAC_SINHVIEN" Member="CAPBAC1" ThisKey="CAPBAC" OtherKey="MACAPBAC" Type="CAPBAC" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="CHUCVU_SINHVIEN" Member="CHUCVU1" ThisKey="CHUCVU" OtherKey="MACHUCVU" Type="CHUCVU" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="DETHI_SINHVIEN" Member="DETHI" ThisKey="SODETHI" OtherKey="MADETHI" Type="DETHI" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="DONVI_SINHVIEN" Member="DONVI1" ThisKey="DONVI" OtherKey="MADONVI" Type="DONVI" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="NHOMVK_SINHVIEN" Member="NHOMVK" ThisKey="TENBAITH" OtherKey="MANHOM" Type="NHOMVK" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.CAPBAC" Member="CAPBACs">
@@ -15,24 +34,12 @@
       <Association Name="CAPBAC_SINHVIEN" Member="SINHVIENs" ThisKey="MACAPBAC" OtherKey="CAPBAC" Type="SINHVIEN" />
     </Type>
   </Table>
-  <Table Name="dbo.CAUHOI" Member="CAUHOIs">
-    <Type Name="CAUHOI">
-      <Column Name="MACH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="NOIDUNG" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="HINHANH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="MANHOM" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="CAUHOI_CHITIETBODETHI" Member="CHITIETBODETHIs" ThisKey="MACH" OtherKey="MACH" Type="CHITIETBODETHI" />
-      <Association Name="CAUHOI_CHITIETDETHI" Member="CHITIETDETHIs" ThisKey="MACH" OtherKey="MACH" Type="CHITIETDETHI" />
-      <Association Name="CAUHOI_DAPAN" Member="DAPANs" ThisKey="MACH" OtherKey="MACH" Type="DAPAN" />
-      <Association Name="NHOMVK_CAUHOI" Member="NHOMVK" ThisKey="MANHOM" OtherKey="MANHOM" Type="NHOMVK" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.CHITIETBODETHI" Member="CHITIETBODETHIs">
     <Type Name="CHITIETBODETHI">
       <Column Name="MABODT" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MACH" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="BODETHI_CHITIETBODETHI" Member="BODETHI" ThisKey="MABODT" OtherKey="MABODT" Type="BODETHI" IsForeignKey="true" />
-      <Association Name="CAUHOI_CHITIETBODETHI" Member="CAUHOI" ThisKey="MACH" OtherKey="MACH" Type="CAUHOI" IsForeignKey="true" />
+      <Association Name="BODETHI_CHITIETBODETHI" Member="BODETHI" ThisKey="MABODT" OtherKey="MABODT" Type="BODETHI" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="CAUHOI_CHITIETBODETHI" Member="CAUHOI" ThisKey="MACH" OtherKey="MACH" Type="CAUHOI" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.CHITIETDETHI" Member="CHITIETDETHIs">
@@ -40,8 +47,8 @@
       <Column Name="MADETHI" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MACH" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="DA" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="CAUHOI_CHITIETDETHI" Member="CAUHOI" ThisKey="MACH" OtherKey="MACH" Type="CAUHOI" IsForeignKey="true" />
-      <Association Name="DETHI_CHITIETDETHI" Member="DETHI" ThisKey="MADETHI" OtherKey="MADETHI" Type="DETHI" IsForeignKey="true" />
+      <Association Name="DETHI_CHITIETDETHI" Member="DETHI" ThisKey="MADETHI" OtherKey="MADETHI" Type="DETHI" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="CAUHOI_CHITIETDETHI" Member="CAUHOI" ThisKey="MACH" OtherKey="MACH" Type="CAUHOI" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.CHUCVU" Member="CHUCVUs">
@@ -51,23 +58,14 @@
       <Association Name="CHUCVU_SINHVIEN" Member="SINHVIENs" ThisKey="MACHUCVU" OtherKey="CHUCVU" Type="SINHVIEN" />
     </Type>
   </Table>
-  <Table Name="dbo.DAPAN" Member="DAPANs">
-    <Type Name="DAPAN">
-      <Column Name="MADA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="MACH" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="NOIDUNGDA" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="DADUNG" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="CAUHOI_DAPAN" Member="CAUHOI" ThisKey="MACH" OtherKey="MACH" Type="CAUHOI" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
   <Table Name="dbo.DETHI" Member="DETHIs">
     <Type Name="DETHI">
       <Column Name="MADETHI" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="NGAYTAO" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="MAKYTHI" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="DETHI_CHITIETDETHI" Member="CHITIETDETHIs" ThisKey="MADETHI" OtherKey="MADETHI" Type="CHITIETDETHI" />
       <Association Name="DETHI_SINHVIEN" Member="SINHVIENs" ThisKey="MADETHI" OtherKey="SODETHI" Type="SINHVIEN" />
-      <Association Name="KYTHI_DETHI" Member="KYTHI" ThisKey="MAKYTHI" OtherKey="MAKYTHI" Type="KYTHI" IsForeignKey="true" />
+      <Association Name="DETHI_CHITIETDETHI" Member="CHITIETDETHIs" ThisKey="MADETHI" OtherKey="MADETHI" Type="CHITIETDETHI" />
+      <Association Name="KYTHI_DETHI" Member="KYTHI" ThisKey="MAKYTHI" OtherKey="MAKYTHI" Type="KYTHI" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.DETHI_SINHVIEN" Member="DETHI_SINHVIENs">
@@ -101,6 +99,7 @@
       <Column Name="MABODT" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SODETHI" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="KYTHI_DETHI" Member="DETHIs" ThisKey="MAKYTHI" OtherKey="MAKYTHI" Type="DETHI" />
+      <Association Name="BODETHI_KYTHI" Member="BODETHI" ThisKey="MABODT" OtherKey="MABODT" Type="BODETHI" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.LOADKQCU" Member="LOADKQCUs">
@@ -118,26 +117,47 @@
     <Type Name="NHOMVK">
       <Column Name="MANHOM" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="TENNHOM" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Association Name="NHOMVK_CAUHOI" Member="CAUHOIs" ThisKey="MANHOM" OtherKey="MANHOM" Type="CAUHOI" />
       <Association Name="NHOMVK_SINHVIEN" Member="SINHVIENs" ThisKey="MANHOM" OtherKey="TENBAITH" Type="SINHVIEN" />
+      <Association Name="NHOMVK_CAUHOI" Member="CAUHOIs" ThisKey="MANHOM" OtherKey="MANHOM" Type="CAUHOI" />
     </Type>
   </Table>
-  <Table Name="dbo.SINHVIEN" Member="SINHVIENs">
-    <Type Name="SINHVIEN">
-      <Column Name="MATS" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="HOTEN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="CAPBAC" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CHUCVU" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DONVI" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TENDN" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="MATKHAU" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="SODETHI" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TENBAITH" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="CAPBAC_SINHVIEN" Member="CAPBAC1" ThisKey="CAPBAC" OtherKey="MACAPBAC" Type="CAPBAC" IsForeignKey="true" />
-      <Association Name="CHUCVU_SINHVIEN" Member="CHUCVU1" ThisKey="CHUCVU" OtherKey="MACHUCVU" Type="CHUCVU" IsForeignKey="true" />
-      <Association Name="DETHI_SINHVIEN" Member="DETHI" ThisKey="SODETHI" OtherKey="MADETHI" Type="DETHI" IsForeignKey="true" />
-      <Association Name="DONVI_SINHVIEN" Member="DONVI1" ThisKey="DONVI" OtherKey="MADONVI" Type="DONVI" IsForeignKey="true" />
-      <Association Name="NHOMVK_SINHVIEN" Member="NHOMVK" ThisKey="TENBAITH" OtherKey="MANHOM" Type="NHOMVK" IsForeignKey="true" />
+  <Table Name="dbo.BODETHI_CAUHOI" Member="BODETHI_CAUHOIs">
+    <Type Name="BODETHI_CAUHOI">
+      <Column Name="MABODT" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MACH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NOIDUNG" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="HINHANH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MANHOM" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.CAUHOI" Member="CAUHOIs">
+    <Type Name="CAUHOI">
+      <Column Name="MACH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NOIDUNG" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="HINHANH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MANHOM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="CAUHOI_CHITIETBODETHI" Member="CHITIETBODETHIs" ThisKey="MACH" OtherKey="MACH" Type="CHITIETBODETHI" />
+      <Association Name="CAUHOI_CHITIETDETHI" Member="CHITIETDETHIs" ThisKey="MACH" OtherKey="MACH" Type="CHITIETDETHI" />
+      <Association Name="CAUHOI_DAPAN" Member="DAPANs" ThisKey="MACH" OtherKey="MACH" Type="DAPAN" />
+      <Association Name="NHOMVK_CAUHOI" Member="NHOMVK" ThisKey="MANHOM" OtherKey="MANHOM" Type="NHOMVK" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DAPAN" Member="DAPANs">
+    <Type Name="DAPAN">
+      <Column Name="MADA" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MACH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NOIDUNGDA" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="DADUNG" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="CAUHOI_DAPAN" Member="CAUHOI" ThisKey="MACH" OtherKey="MACH" Type="CAUHOI" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Function Name="dbo.sp_DanhSachCauHoiDeThi" Method="sp_DanhSachCauHoiDeThi">
+    <Parameter Name="madethi" Type="System.Int32" DbType="Int" />
+    <ElementType Name="sp_DanhSachCauHoiDeThiResult">
+      <Column Name="mach" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="noidung" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="manhom" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="noidungda" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>

@@ -4,6 +4,7 @@
     Namespace="DevExpress.Web.ASPxFormLayout" TagPrefix="dx" %>
 <%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxGridView" tagprefix="dx" %>
 <%@ Register assembly="DevExpress.Web.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.Web.ASPxEditors" tagprefix="dx" %>
+<%@ Register assembly="DevExpress.XtraReports.v14.1.Web, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" namespace="DevExpress.XtraReports.Web" tagprefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <script type="text/javascript">
     function OnNameValidation(s, e) {
@@ -26,7 +27,7 @@
                         <LayoutItemNestedControlCollection>
                             <dx:LayoutItemNestedControlContainer runat="server">
                                 <dx:ASPxTextBox ID="txtTenKT" runat="server" ClientInstanceName="txtTenKT" 
-                                    OnValidation="txtTenKT_Validation" Width="170px">
+                                    OnValidation="txtTenKT_Validation" Width="100%">
                                     <ClientSideEvents Validation="OnNameValidation" />
                                     <ValidationSettings ErrorText="Phải đặt tên kỳ thi" SetFocusOnError="True">
                                         <RequiredField ErrorText="Yêu cầu đặt tên" IsRequired="True" />
@@ -41,7 +42,7 @@
                         <LayoutItemNestedControlCollection>
                             <dx:LayoutItemNestedControlContainer runat="server">
                                 <dx:ASPxDateEdit ID="dateNgayThi" runat="server" 
-                                    ClientInstanceName="dateNgayThi">
+                                    ClientInstanceName="dateNgayThi" Width="100%">
                                 </dx:ASPxDateEdit>
                             </dx:LayoutItemNestedControlContainer>
                         </LayoutItemNestedControlCollection>
@@ -50,7 +51,7 @@
                         <LayoutItemNestedControlCollection>
                             <dx:LayoutItemNestedControlContainer runat="server">
                                 <dx:ASPxComboBox ID="cbBoDT" runat="server" ClientInstanceName="cbBoDT" 
-                                    DataSourceID="BoDeThiSource" ValueField="MABODT">
+                                    DataSourceID="BoDeThiSource" ValueField="MABODT" Width="100%">
                                     <Columns>
                                         <dx:ListBoxColumn Caption="Mã bộ đề thi" FieldName="MABODT" />
                                         <dx:ListBoxColumn Caption="Ngày lập" FieldName="NGAYTAO" />
@@ -63,7 +64,7 @@
                         <LayoutItemNestedControlCollection>
                             <dx:LayoutItemNestedControlContainer runat="server">
                                 <dx:ASPxTextBox ID="txtSoDT" runat="server" ClientInstanceName="txtSoDT" 
-                                    Width="170px">
+                                    Width="100%">
                                 </dx:ASPxTextBox>
                             </dx:LayoutItemNestedControlContainer>
                         </LayoutItemNestedControlCollection>
@@ -105,22 +106,35 @@
     </dx:ASPxFormLayout>
     <dx:ASPxGridView ID="ASPxGridView1" runat="server" AutoGenerateColumns="False" 
         Caption="Danh sách kỳ thi" DataSourceID="KyThiSource" EnableTheming="True" 
-        KeyFieldName="MAKYTHI" Theme="Aqua">
+        KeyFieldName="MAKYTHI" Theme="Aqua" Width="500px" 
+        oncustombuttoncallback="ASPxGridView1_CustomButtonCallback">
         <Columns>
+            <dx:GridViewCommandColumn ShowDeleteButton="True" VisibleIndex="0">
+                <CustomButtons>
+                    <dx:GridViewCommandColumnCustomButton ID="btnCusPrintDT" Text="In các đề thi">
+                    </dx:GridViewCommandColumnCustomButton>
+                </CustomButtons>
+            </dx:GridViewCommandColumn>
             <dx:GridViewDataTextColumn FieldName="MAKYTHI" 
-                VisibleIndex="0" ReadOnly="True">
+                VisibleIndex="1" ReadOnly="True">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataTextColumn FieldName="TENKYTHI" 
-                VisibleIndex="1">
+                VisibleIndex="2">
             </dx:GridViewDataTextColumn>
             <dx:GridViewDataDateColumn FieldName="NGAYTHI" 
-                VisibleIndex="2">
+                VisibleIndex="3">
             </dx:GridViewDataDateColumn>
-            <dx:GridViewDataTextColumn FieldName="MABODT" VisibleIndex="3">
+            <dx:GridViewDataTextColumn FieldName="MABODT" VisibleIndex="4">
             </dx:GridViewDataTextColumn>
-            <dx:GridViewDataTextColumn FieldName="SODETHI" VisibleIndex="4">
+            <dx:GridViewDataTextColumn FieldName="SODETHI" VisibleIndex="5">
             </dx:GridViewDataTextColumn>
         </Columns>
+        <SettingsBehavior ConfirmDelete="True" />
+        <SettingsText CommandDelete="Bạn có muốn xóa kỳ thi này không?" />
+        <SettingsCommandButton>
+            <DeleteButton Text="Xóa">
+            </DeleteButton>
+        </SettingsCommandButton>
     </dx:ASPxGridView>
     <asp:LinqDataSource ID="KyThiSource" runat="server" 
         ContextTypeName="thitracnghiem.QLTHITNDataContext" EnableDelete="True" 
@@ -129,4 +143,5 @@
     <asp:LinqDataSource ID="BoDeThiSource" runat="server" 
         ContextTypeName="thitracnghiem.QLTHITNDataContext" TableName="BODETHIs">
     </asp:LinqDataSource>
+    <br />
 </asp:Content>

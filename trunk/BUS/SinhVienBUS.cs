@@ -18,5 +18,13 @@ namespace thitracnghiem.BUS
                 return true;
             return false;
         }
+        public int GetMats(string tendn)
+        {
+            int q = (from a in db.SINHVIENs
+                     where a.TENDN == tendn
+                     select a.MATS).First();
+            return q;
+        }
+
     }
 }

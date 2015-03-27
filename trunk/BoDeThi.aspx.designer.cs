@@ -22,6 +22,15 @@ namespace thitracnghiem {
         protected global::DevExpress.Web.ASPxEditors.ASPxDateEdit dateBDT;
         
         /// <summary>
+        /// ASPxTextBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox ASPxTextBox1;
+        
+        /// <summary>
         /// ASPxLabel1 control.
         /// </summary>
         /// <remarks>
@@ -182,6 +191,42 @@ namespace thitracnghiem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtNoB41;
+        
+        /// <summary>
+        /// ASPxLabel10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxEditors.ASPxLabel ASPxLabel10;
+        
+        /// <summary>
+        /// txtI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtI;
+        
+        /// <summary>
+        /// ASPxLabel11 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxEditors.ASPxLabel ASPxLabel11;
+        
+        /// <summary>
+        /// txtII control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DevExpress.Web.ASPxEditors.ASPxTextBox txtII;
         
         /// <summary>
         /// btnClear control.

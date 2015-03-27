@@ -8,104 +8,91 @@
 <head runat="server">
     <title></title>
     <style type="text/css">
+      
+        .style1
+        {
+            width: 412px;
+        }
+        .style2
+        {
+            color: #A7A7A7;
+        }
+      
         .style3
         {
-            width: 500px;
-            font-family: "Times New Roman", Times, serif;
-            color: #FF0000;
-            font-size: x-large;
-            text-align: left;
+            color: #A7A7A7;
         }
-        .style5
+      
+        .newStyle1
         {
-            width: 299px;
+            font-family: tahoma;
         }
-        .style7
-        {
-            width: 95px;
-            text-align: center;
-            font-weight: bold;
-            background-color: #ACECDE;
-        }
-        .style8
-        {
-            width: 97px;
-        }
-        .style9
-        {}
-        .style10
-        {
-            width: 299px;
-            font-weight: bold;
-            color: #003366;
-            background-color: #ACECDE;
-        }
+      
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
     
-        <asp:Panel ID="Panel1" runat="server" BackColor="#ACECDE" Height="1000px" 
-            Width="100%">
+        <asp:Panel ID="Panel1" runat="server" Height="1000px" 
+            Width="100%" BackColor="#F7F7F7">
             <table style="width: 100%; height: 185px;">
                 <tr>
-                    <td class="style7" rowspan="5" width="700px">
+                    <td class="style7" rowspan="3" width="400px">
                         &nbsp;</td>
-                    <td class="style3" height="100px">
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="style3">
-                        <strong style="text-align: left">CHƯƠNG TRÌNH THI TRẮC NGHIỆM</strong></td>
-                </tr>
-                <tr>
-                    <td class="style3" height="50px">
+                    <td class="style1" align="center">
+                        <dx:ASPxImage ID="ASPxImage1" runat="server" ImageAlign="Middle" 
+                            ImageUrl="~/image/touch-icon-192x192.png" style="text-align: center" 
+                            TabIndex="-1" Theme="Aqua">
+                        </dx:ASPxImage>
+                    </td>
+                    <td class="style1">
                         &nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="style10">
-                        ĐĂNG NHẬP</td>
+                    <td class="style1">
+                        &nbsp;</td>
+                    <td class="style1">
+                        &nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="style5">
-                        <asp:Panel ID="Panel2" runat="server" BackColor="White" BorderStyle="Double" 
-                            Height="100px" Width="400px">
+                    <td class="style1">
+                        <asp:Panel ID="Panel2" runat="server" BackColor="#F7F7F7" BorderStyle="None" 
+                            Height="250px" Width="460px">
                             <table style="width: 100%;">
                                 <tr>
-                                    <td class="style8">
-                                        Tên đăng nhập</td>
-                                    <td colspan="2">
-                                        <dx:ASPxTextBox ID="txtTenDN" runat="server" Width="100%">
-                                        </dx:ASPxTextBox>
-                                    </td>
+                                    <td class="style2">
+                                        <strong>Tên đăng nhập</strong></td>
                                 </tr>
                                 <tr>
-                                    <td class="style8">
-                                        Mật khẩu</td>
-                                    <td colspan="2">
-                                        <dx:ASPxTextBox ID="txtMatKhau" runat="server" Password="True" Width="100%">
-                                        </dx:ASPxTextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="style8">
-                                        &nbsp;</td>
-                                    <td align="justify" class="style9">
-                                        <dx:ASPxButton ID="btnDangNhap" runat="server" onclick="btnDangNhap_Click" 
-                                            Text="Đăng nhập" Theme="Youthful" Width="50px">
-                                        </dx:ASPxButton>
-                                    </td>
                                     <td>
-                                        <dx:ASPxButton ID="btnThoat" runat="server" Text="Thoát" Theme="Youthful" 
-                                            Width="70px">
+                                        <dx:ASPxTextBox ID="txtTenDN" runat="server" Height="30px" Width="450px">
+                                            <Border BorderColor="#E0E0E0" BorderStyle="Solid" BorderWidth="2px" />
+                                        </dx:ASPxTextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="style3">
+                                        <strong>Mật khẩu</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <dx:ASPxTextBox ID="txtMatKhau" runat="server" Height="30px" Password="True" 
+                                            Width="450px">
+                                            <Border BorderColor="#E0E0E0" BorderStyle="Solid" BorderWidth="2px" />
+                                        </dx:ASPxTextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="style9" align="center">
+                                        <dx:ASPxButton ID="btnDangNhap" runat="server" BackColor="#707070" 
+                                            Font-Size="Large" ForeColor="#A4A4A4" Height="48px" onclick="btnDangNhap_Click" 
+                                            Text="Đăng nhập" Theme="Youthful" Width="210px">
                                         </dx:ASPxButton>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="style8">
-                                        &nbsp;</td>
-                                    <td class="style9" colspan="2">
+                                    <td class="style9">
                                         <dx:ASPxLabel ID="lblError" runat="server">
                                         </dx:ASPxLabel>
                                     </td>
@@ -113,6 +100,8 @@
                             </table>
                         </asp:Panel>
                     </td>
+                    <td class="style1">
+                        &nbsp;</td>
                 </tr>
             </table>
         </asp:Panel>

@@ -21,6 +21,7 @@
     <link rel="stylesheet" type="text/css" href="Styles/DragAndDrop.css">
  <script type="text/javascript">
      function OnUpdateClick() {
+       
          uploader.UploadFile();
        
      }
@@ -57,10 +58,14 @@
             </dx:GridViewDataComboBoxColumn>
         </Columns>
 
-        <SettingsPager NumericButtonCount="5">
+        <SettingsBehavior ConfirmDelete="True" />
+
+        <SettingsPager NumericButtonCount="5" PageSize="5">
         </SettingsPager>
 
         <Settings ShowFilterRow="True" ShowGroupPanel="True" />
+
+        <SettingsText CommandDelete="Bạn có muốn xóa câu hỏi này?" />
 
         <SettingsDetail ShowDetailRow="True" />
 
@@ -85,7 +90,8 @@
                     ClientInstanceName="gridDetail" DataSourceID="DapAnSource" KeyFieldName="MADA"
                     onbeforeperformdataselect="gridDetail_BeforePerformDataSelect" 
                     oninitnewrow="gridDetail_InitNewRow" 
-                    onrowinserting="gridDetail_RowInserting" Width="70%">
+                    onrowinserting="gridDetail_RowInserting" Width="100%" 
+                    ViewStateMode="Disabled">
                     <Columns>
                         <dx:GridViewCommandColumn ShowDeleteButton="True" ShowNewButtonInHeader="True" 
                             VisibleIndex="0" ShowEditButton="True" Width="50px">
@@ -97,6 +103,20 @@
                             VisibleIndex="2" Width="20px">
                         </dx:GridViewDataCheckColumn>
                     </Columns>
+                    <SettingsEditing EditFormColumnCount="1">
+                    </SettingsEditing>
+                    <SettingsCommandButton>
+                        <NewButton Text="Thêm mới">
+                        </NewButton>
+                        <UpdateButton Text="Lưu">
+                        </UpdateButton>
+                        <CancelButton Text="Hủy">
+                        </CancelButton>
+                        <EditButton Text="Sửa">
+                        </EditButton>
+                        <DeleteButton Text="Xóa">
+                        </DeleteButton>
+                    </SettingsCommandButton>
                 </dx:ASPxGridView>
             </DetailRow>
             <EditForm>
@@ -195,8 +215,10 @@
                   
                   
                   <div style="text-align: right; padding: 2px 2px 2px 2px">
-                      <a href="#" onclick="OnUpdateClick()">Update</a>
-                                         
+                      <a href="#" onclick="OnUpdateClick()">Lưu</a>
+                     <dx:ASPxGridViewTemplateReplacement ID="UpdateButton" ReplacementType="EditFormUpdateButton"
+                        runat="server">
+                    </dx:ASPxGridViewTemplateReplacement>
                     <dx:ASPxGridViewTemplateReplacement ID="CancelButton" ReplacementType="EditFormCancelButton"
                         runat="server">
                     </dx:ASPxGridViewTemplateReplacement>
