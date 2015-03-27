@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Collections;
 
 namespace thitracnghiem.BUS
 {
@@ -57,5 +58,20 @@ namespace thitracnghiem.BUS
             }
             return 0;
         }
+        //có mã kỳ thi tìm mã đề thi
+        public ArrayList GetMadtFromKythi(int makthi)
+        {
+            ArrayList dsDethi = new ArrayList();
+            var dethi = (from a in db.DETHIs
+                       where a.MAKYTHI == makthi
+                       select a).Distinct();
+            foreach (DETHI item in dethi)
+            {
+                dsDethi.Add(item);
+            }
+            return dsDethi;
+        }
+        
+
     }
 }

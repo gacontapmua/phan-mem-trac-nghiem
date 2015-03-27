@@ -17,27 +17,16 @@ namespace thitracnghiem
         BoDeThiBUS bdtBus = new BoDeThiBUS();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!Page.IsPostBack)
+            dateBDT.Value = DateTime.Now;
+            gridMaster.DataBind();
         }
 
         protected void gridDetail_BeforePerformDataSelect(object sender, EventArgs e)
         {
             Session["MABODT"] = (sender as ASPxGridView).GetMasterRowKeyValue();
         }
-
-        protected void btnClear_Click(object sender, EventArgs e)
-        {
-            txtNoAK.Text = "0";
-            txtNoB41.Text = "0";
-            txtNoCKC.Text = "0";
-            txtNoCoi.Text = "0";
-            txtNoDKZ.Text = "0";
-            txtNoK54.Text = "0";
-            txtNoPKMS.Text = "0";
-            txtNoRPD.Text = "0";
-            txtNoSMPK.Text = "0";
-            
-        }
+ 
         static Random rnd = new Random();
         protected void btnCreateQuestion_Click(object sender, EventArgs e)
         {
@@ -52,6 +41,8 @@ namespace thitracnghiem
             int NoSMPK = 0;
             int NoDKZ = 0;
             int NoB41 = 0;
+            int NoI = 0;
+            int NoII = 0;
             //Lấy các tham số
             if (txtNoAK.Text !="0")
                  NoAK =Convert.ToInt32 (txtNoAK.Text);
@@ -77,7 +68,10 @@ namespace thitracnghiem
 
             if (txtNoB41.Text != "0")
                 NoB41 = Convert.ToInt32(txtNoB41.Text);
-            
+            if (txtI.Text != "0")
+                NoI = Convert.ToInt32(txtI.Text);
+            if (txtII.Text != "0")
+                NoII = Convert.ToInt32(txtII.Text);
             
             //Tạo câu hỏi
             ArrayList dsCauHoi = new ArrayList();
@@ -372,13 +366,98 @@ namespace thitracnghiem
                     }
 
             }
+            if (NoI != 0)
+            {
+                socauhoi += NoI;
+                //Lấy mã nhóm VK 
+                int manhom = nvkBus.GetMaNhomVK("I");
+                ArrayList ch = chBus.GetDSCauHoi(manhom);
+                if (ch.Count != 0)
+                    //lấy ngẫu nhiêm theo đúng số lượng câu hỏi
+                    if (ch.Count <= NoI)
+                        dsCauHoi.AddRange(ch);
+                    else
+                    //Nếu lớn hơn thì lấy danh sách ngẫu nhiên câu hỏi
+                    {
+                        l_nn = new ArrayList();
+                        int i = 0;
+                        while (i < NoI)
+                        {
+                            int r = rnd.Next(ch.Count);
+                            if (!l_nn.Contains(r))
+                            {
+                                i++;
+                                l_nn.Add(r);
+                            }
+
+                        }
+                        //Lấy câu hỏi chèn vào
+                        foreach (int item in l_nn)
+                        {
+                            dsCauHoi.Add(ch[item]);
+                        }
+                    }
+
+            }
+            if (NoII != 0)
+            {
+                socauhoi += NoII;
+                //Lấy mã nhóm VK 
+                int manhom = nvkBus.GetMaNhomVK("II");
+                ArrayList ch = chBus.GetDSCauHoi(manhom);
+                if (ch.Count != 0)
+                    //lấy ngẫu nhiêm theo đúng số lượng câu hỏi
+                    if (ch.Count <= NoII)
+                        dsCauHoi.AddRange(ch);
+                    else
+                    //Nếu lớn hơn thì lấy danh sách ngẫu nhiên câu hỏi
+                    {
+                        l_nn = new ArrayList();
+                        int i = 0;
+                        while (i < NoII)
+                        {
+                            int r = rnd.Next(ch.Count);
+                            if (!l_nn.Contains(r))
+                            {
+                                i++;
+                                l_nn.Add(r);
+                            }
+
+                        }
+                        //Lấy câu hỏi chèn vào
+                        foreach (int item in l_nn)
+                        {
+                            dsCauHoi.Add(ch[item]);
+                        }
+                    }
+
+            }
 #endregion
             #region Lưu danh sách bộ đề thi
             //Lây ngày tháng 
-            bdtBus.SaveChiTietBoDeThi(socauhoi, dsCauHoi);
+            if (socauhoi != 0)
+            {
+                bdtBus.SaveChiTietBoDeThi(socauhoi, dsCauHoi);
+            }
+            else return;
             #endregion
-
+             
         }
+
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            txtNoAK.Text = "0";
+            txtNoB41.Text = "0";
+            txtNoCKC.Text = "0";
+            txtNoCoi.Text = "0";
+            txtNoDKZ.Text = "0";
+            txtNoK54.Text = "0";
+            txtNoPKMS.Text = "0";
+            txtNoRPD.Text = "0";
+            txtNoSMPK.Text = "0";
+        }
+
+        
         
     }
 }

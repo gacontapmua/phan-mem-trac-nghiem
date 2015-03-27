@@ -35,12 +35,23 @@
          
     </script>
     <script runat="server" type="text/c#">
-      
+        protected void Timer2_Tick(object sender, EventArgs e)
+    {
+        lblCountDown.Text = "Thời gian: " + DateTime.Now.ToLongTimeString();
+        string endtime =(string) Session["thoigian"];
+            if (DateTime.Now.ToShortTimeString() == endtime)
+        {
+            Timer2.Enabled = false;
+            lblCountDown.Text = "HẾT GIỜ";
+            btnTiepTheo.Visible = false;
+            
+        }
+    }
     </script>
     <style type="text/css">
         .style1
         {
-            width: 1062px;
+            width: 825px;
         }
         .style2
         {
@@ -54,9 +65,9 @@
     
         <table style="border: thin double #CCCC00" >
             <tr>
-                <td rowspan="4" width="300px">
+                <td class="style1">
                     &nbsp;</td>
-                <td>
+                <td width="100px">
                     <dx:ASPxImage ID="ASPxImage1" runat="server" 
                         ImageUrl="~/image/200px-Vietnam_People's_Army_signal.jpg">
                     </dx:ASPxImage>
@@ -85,7 +96,9 @@
                                 </td>
             </tr>
             <tr>
-                <td colspan="3" align="left">
+                <td align="left" class="style1">
+                    &nbsp;</td>
+                <td colspan="2" align="left">
                     <table >
                         <tr>
                             <td valign="top">
@@ -103,9 +116,15 @@
                         </tr>
                         </table>
                 </td>
+                <td rowspan="3" style="text-align: left; vertical-align: top">
+                    &nbsp;</td>
             </tr>
             <tr>
-                <td colspan="3" style="text-align: right">
+                <td style="text-align: right" class="style1">
+                     
+                  
+                                &nbsp;</td>
+                <td colspan="2" style="text-align: right">
                      
                   
                                 <dx:ASPxRadioButtonList ID="radListDA" runat="server" Theme="Aqua" 
@@ -115,11 +134,14 @@
                 </td>
             </tr>
             <tr>
+                <td style="text-align: right" class="style1">
+                     
+                  
+                                &nbsp;</td>
                 <td style="text-align: right">
                      
                                 <dx:ASPxButton ID="btnTiepTheo" Width="50" Height="50" runat="server" Text="Câu tiếp theo" 
-                                    Theme="Aqua" HorizontalAlign="Left" onclick="btnTiepTheo_Click" 
-                                    Visible="False">
+                                    Theme="Aqua" HorizontalAlign="Left" onclick="btnTiepTheo_Click">
                                 </dx:ASPxButton>
                             
                                 <dx:ASPxButton ID="btnNopBai" Width="50" Height="50" runat="server" Text="Nộp bài" 
@@ -131,27 +153,52 @@
                                 </dx:ASPxLabel>
                    
                 </td>
-                <td style="text-align: right" colspan="2">                
+                <td style="text-align: right">
+                     
                   
+                                <asp:ScriptManager ID="ScriptManager1" runat="server">
+                                </asp:ScriptManager>
+                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                    <ContentTemplate>
+                                        <dx:ASPxTimer ID="ASPxTimer1" runat="server" ClientInstanceName="Timer1" 
+                                            Interval="1000">
+                                            <ClientSideEvents Init="function(s, e) {
+	 demoInit();
+}" Tick="function(s, e) {
+	 demoTick();
+}" />
+                                        </dx:ASPxTimer>
+                                        <asp:Timer ID="Timer2" runat="server" Interval ="1000" OnTick="Timer2_Tick" 
+                                            Enabled="False">
+                                        </asp:Timer>
+                                        <dx:ASPxLabel ID="lblCountDown" runat="server"  
+                                            ClientInstanceName="lblCountDown" Text="">
+                                        </dx:ASPxLabel>
+                                        <br />
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
                                 
-                                  <div>
-                <asp:ScriptManager ID= "SM1" runat="server"></asp:ScriptManager>
-                <asp:Timer ID="timer1" runat="server" Interval="1000" OnTick="timer1_tick" Enabled="False"></asp:Timer>
-                       
-                </div>
-                <div>
-                <asp:UpdatePanel id="updPnl" runat="server" UpdateMode="Conditional">
-                <ContentTemplate>
-                <asp:Label ID="lblTimer" runat="server"></asp:Label>
-                </ContentTemplate>
-                <Triggers>
-                <asp:AsyncPostBackTrigger ControlID="timer1" EventName ="tick" />
-                </Triggers>
-                </asp:UpdatePanel>
-                </div>
-                                </td>
-                            </tr>
-                            </table>
+                 
+                                <br />
+                                
+                  <div>
+<asp:ScriptManager ID= "SM1" runat="server"></asp:ScriptManager>
+<asp:Timer ID="timer1" runat="server" Interval="1000" OnTick="timer1_tick"></asp:Timer>
+        <br />
+</div>
+<pre><div>
+<asp:UpdatePanel id="updPnl" runat="server" UpdateMode="Conditional">
+<ContentTemplate>
+<asp:Label ID="lblTimer" runat="server"></asp:Label>
+</ContentTemplate>
+<Triggers>
+<asp:AsyncPostBackTrigger ControlID="timer1" EventName ="tick" />
+</Triggers>
+</asp:UpdatePanel>
+</div>
+                </td>
+            </tr>
+            </table>
         
     </div>
     </form>

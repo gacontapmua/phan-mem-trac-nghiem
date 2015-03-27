@@ -14,6 +14,7 @@ namespace thitracnghiem
 
         }
         SinhVienBUS svBus;
+        KyThiBUS ktBus;
         protected void btnDangNhap_Click(object sender, EventArgs e)
         {
             //Nhập tên và mật khẩu để đăng nhập
@@ -23,7 +24,13 @@ namespace thitracnghiem
             {
                 //Đăng nhập thành công
                 //Chuyển trang sang thi trắc nghiệm
-                Response.Redirect("~/ThiOnline.aspx");
+                ktBus = new KyThiBUS();
+                string tenkt = ktBus.GetTenKyThi( txtTenDN.Text);
+                string url;
+                url = "~/ThiOnline.aspx?tenkt=" + tenkt +"&name=" +
+                    txtTenDN.Text;
+                Response.Redirect(url);
+              //  Response.Redirect("~/ThiOnline.aspx");
             }
             else
                 lblError.Text = "Đăng nhập không thành công, mời đăng nhập lại";

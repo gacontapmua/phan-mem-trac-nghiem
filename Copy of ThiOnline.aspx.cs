@@ -9,7 +9,7 @@ using System.Collections;
 using DevExpress.Web.ASPxEditors;
 namespace thitracnghiem
 {
-    public partial class ThiOnline : System.Web.UI.Page
+    public partial class demo_ThiOnline : System.Web.UI.Page
     {
         DeThiBUS dtBus = new DeThiBUS();
         CauHoiBUS chBus = new CauHoiBUS();
@@ -18,7 +18,8 @@ namespace thitracnghiem
       
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!SM1.IsInAsyncPostBack)
+                Session["timeout"] = DateTime.Now.AddMinutes(90).ToString();
             if (!Page.IsPostBack)
             {
                 if (Request.QueryString["name"] == null)
@@ -67,8 +68,6 @@ namespace thitracnghiem
                     index++;
                 }
                 Session["no_ch"] = (int)Session["no_ch"] + 1;
-                if (!SM1.IsInAsyncPostBack)
-                    Session["timeout"] = DateTime.Now.AddMinutes(90).ToString();
             }
          
         }
@@ -76,7 +75,30 @@ namespace thitracnghiem
        
      
 
-      
+     
+        int demoCounter = 0;
+        protected void ASPxTimer1_Init(object sender, EventArgs e)
+        {
+            demoCounter = 90;
+        }
+        void demoUpdate()
+        {
+            if (demoCounter > 0)
+                lblCountDown.Text = demoCounter.ToString();
+                
+            else
+            {
+                ASPxTimer1.Enabled = false;
+                
+            }
+        }
+        protected void ASPxTimer1_Tick(object sender, EventArgs e)
+        {
+            demoCounter -= 1;
+            demoUpdate();
+        }
+
+        
 
         protected void btnStart_Click(object sender, EventArgs e)
         {
@@ -84,11 +106,12 @@ namespace thitracnghiem
             txtCauHoi.Visible = true;
             radListDA.Visible = true;
             imgCauHoi.Visible = true;
-            
+            Timer2.Enabled = true;
             btnNopBai.Visible = true;
             btnTiepTheo.Visible = true;
-            timer1.Enabled = true;
-            Session["timeout"] = DateTime.Now.AddMinutes(90).ToString();
+
+            DateTime endTime = DateTime.Now.AddMinutes(1);
+          Session["thoigian"] = endTime.ToShortTimeString();
             //Tính toán thời gian để kết thúc bài thì
 
         }

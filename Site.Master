@@ -40,7 +40,6 @@
                             <asp:MenuItem NavigateUrl="~/LapKyThi.aspx" Text="Lập kỳ thi" 
                                 Value="Lập kỳ thi"></asp:MenuItem>
                         </asp:MenuItem>
-                        <asp:MenuItem Text="Thi trắc nghiệm" Value="Thi trắc nghiệm"></asp:MenuItem>
                         <asp:MenuItem NavigateUrl="~/About.aspx" Text="About"/>
                     </Items>
                 </asp:Menu>
